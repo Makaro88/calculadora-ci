@@ -5,8 +5,24 @@ services:
     build: .
     ports:
       - "5000:5000"
+    environment:
+      - REDIS_HOST=redis-db
+      - REDIS_PORT=6379
     depends_on:
       - redis-db
+    networks:
+      - red-calculadora
 
   redis-db:
     image: redis:alpine
+    volumes:
+      - redis-data:/data
+    networks:
+      - red-calculadora
+
+networks:
+  red-calculadora:
+    driver: bridge
+
+volumes:
+  redis-data:
