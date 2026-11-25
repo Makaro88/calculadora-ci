@@ -13,9 +13,8 @@ pipeline {
         stage('Pruebas Unitarias') {
             steps {
                 echo 'Ejecutando pruebas con pytest...'
-                sh 'python3 -m venv venv'
-                sh 'venv/bin/pip install pytest'
-                sh 'venv/bin/python -m pytest'
+                sh 'pip3 install pytest'
+                sh 'python3 -m pytest'
             }
         }
 
