@@ -13,8 +13,10 @@ pipeline {
         stage('Pruebas Unitarias') {
             steps {
                 echo 'Ejecutando pruebas con pytest...'
-                sh 'pip3 install pytest'
-                sh 'python3 -m pytest'
+                // Creamos el entorno virtual y usamos sus rutas absolutas
+                sh 'python3 -m venv venv'
+                sh './venv/bin/pip install pytest'
+                sh './venv/bin/python -m pytest'
             }
         }
 
