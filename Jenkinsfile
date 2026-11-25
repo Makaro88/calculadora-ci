@@ -13,8 +13,9 @@ pipeline {
         stage('Pruebas Unitarias') {
             steps {
                 echo 'Ejecutando pruebas con pytest...'
-                sh 'python -m pip install pytest'
-                sh 'python -m pytest'
+                sh 'python3 -m venv venv'
+                sh 'venv/bin/pip install pytest'
+                sh 'venv/bin/python -m pytest'
             }
         }
 
@@ -28,7 +29,7 @@ pipeline {
     
     post {
         always {
-            echo 'Pipeline finalizado exitosamente.'
+            echo 'Pipeline finalizado.'
         }
     }
 }
