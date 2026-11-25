@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 import redis
+import os # <-- Importante
 from calculadora import sumar, restar, multiplicar, dividir, potencia
 
 app = Flask(__name__)
-# Conecta al contenedor redis-db
-r = redis.Redis(host='redis-db', port=6379, db=0, decode_responses=True)
+redis_host = os.getenv('REDIS_HOST', 'redis-db')
+redis_port = int(os.getenv('REDIS_PORT', 6379))
+r = redis.Redis(host=redis_host, port=redis_port, db=0, decode_responses=True)
+
 
 @app.route('/')
 def index():
